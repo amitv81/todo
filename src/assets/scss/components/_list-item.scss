@@ -1,0 +1,41 @@
+.list-item {
+  display: flex;
+  background: #ededed;
+  padding: 10px;
+  margin: 12px 0px 3px;
+  box-shadow: 0px 0px 3px -1px #000;
+  border-radius: 5px;
+  .list-item-text {
+    flex-grow: 1;
+  }
+  .edit-task-container {
+    flex-grow: 1;
+    width: 65%;
+    input,
+    .button {
+      width: 100%;
+      margin: 4px 0px;
+    }
+  }
+
+  .action-icons {
+    display: flex;
+    .button {
+      display: flex;
+      margin: 0px 5px;
+      font-size: 12px;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .task-done {
+    text-decoration: line-through;
+  }
+  .date {
+    font-size: 13px;
+  }
+}
