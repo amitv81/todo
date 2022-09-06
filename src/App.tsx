@@ -25,7 +25,7 @@ function App() {
   });
 
   useEffect(() => {
-    setIsLogedin(accessToken ? true : false);
+    setIsLogedin(true ? true : false);
   }, []);
 
   const [todos, setTodos] = useState<TodoModal[]>(staticTodo);

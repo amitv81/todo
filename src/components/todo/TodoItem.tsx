@@ -4,6 +4,8 @@ import { TodoModal } from "../../models";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "../shared/form/Button";
 import { dateConverter } from "../../utils/helper";
+import Bbutton from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 interface Props {
   todoItems: TodoModal[];
@@ -51,11 +53,15 @@ const TodoItem = ({
     },
     // defaultValues: defaultVal,
   });
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // function to handel done icon
   const handleTaskDone = (id: number) => {
     let todos = [...todoItems];
-
+    
     todos.forEach((item) => {
       if (item.id === id) {
         item.isDone = !item.isDone;
@@ -92,6 +98,7 @@ const TodoItem = ({
   // function to handel delete task
   const handleTaskDelete = (id: number) => {
     setTodos(todoItems.filter((todoItem) => todoItem.id !== id));
+    handleClose()
   };
 
   // Enabeling edit mode
@@ -145,9 +152,21 @@ const TodoItem = ({
         <Button
           label="Delete"
           className="button delete"
-          onClick={() => handleTaskDelete(taskItem.id)}
+          onClick={handleShow}
         />
       </div>
+      <Modal show={show} onHide={handleClose}>
+      <Modal.Dialog>
+      <Modal.Header closeButton />
+      <Modal.Body>
+        <p>Are you sure you want to delete this task ?</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Bbutton variant="secondary">Close</Bbutton>
+        <Bbutton onClick={() => handleTaskDelete(taskItem.id)} variant="">Delete</Bbutton>
+      </Modal.Footer>
+    </Modal.Dialog>
+      </Modal>
     </div>
   );
 };
