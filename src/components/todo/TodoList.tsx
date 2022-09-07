@@ -10,7 +10,11 @@ export interface Props {
 }
 
 const TodoList = ({ todos, setTodos, filter }: Props) => {
-  let filteredList = todos;
+  let filteredList = todos.sort((d1,d2)=>{
+      const date1:any = new Date(d1.date);
+      const date2:any = new Date(d2.date);
+      return date1 - date2
+  });
   if (filter === "done") {
     filteredList = todos.filter((todoItem) => todoItem.isDone === true);
   } else if (filter === "pending") {
